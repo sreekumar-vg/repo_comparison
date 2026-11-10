@@ -1,0 +1,13 @@
+{
+  "pipeline": "orders",
+  "catalog": "dev_catalog",
+  "batch_size": 5000,
+  "enable_cdc": false,
+  "tables": [
+    {
+      "name": "orders",
+      "load_type": "incremental",
+      "watermark_column": "updated_at"
+    }
+  ]
+}

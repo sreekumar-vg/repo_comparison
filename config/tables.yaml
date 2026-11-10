@@ -1,0 +1,5 @@
+tables:
+  - name: customers
+    keys: [customer_id]
+  - name: orders
+    keys: [order_id]

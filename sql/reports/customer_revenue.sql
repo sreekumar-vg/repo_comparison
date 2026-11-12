@@ -1,13 +1,7 @@
--- Revenue per active customer (developer A style)
-SELECT c.customer_id,
-       c.customer_name,
-       SUM(o.amount)  AS total_revenue,
-       COUNT(1)       AS order_count
-FROM   dev_catalog.silver.orders o
-INNER JOIN dev_catalog.silver.customers c
-        ON o.customer_id = c.customer_id
-WHERE  c.status = 'ACTIVE'
-  AND  o.amount > 0
-  AND  o.region IN ('EU', 'US', 'APAC')
-GROUP BY c.customer_id, c.customer_name
-ORDER BY total_revenue DESC;
+/* Developer B: same report, different formatting habits */
+select cust.CUSTOMER_ID, cust.CUSTOMER_NAME, sum(ord.AMOUNT) total_revenue, count(*) order_count
+from prd_catalog.silver.customers as cust
+join prd_catalog.silver.orders as ord on cust.customer_id = ord.customer_id
+where ord.region in ('APAC','EU','US') and 0 < ord.amount and cust.status = 'ACTIVE'
+group by cust.customer_id, cust.customer_name
+order by total_revenue asc
